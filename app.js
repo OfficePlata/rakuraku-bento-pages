@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', initializeApp);
 // ★ ご自身のLIFF IDに書き換えてください。
 const LIFF_ID = "2008199273-3ogv1YME"; 
 // ★ デプロイしたCloudflare WorkerのURLに書き換えてください。
-const BACKEND_URL = "https://rakuraku-bento-pages.pages.dev/"; 
+const BACKEND_URL = "https://rakuraku-bento-worker.a-sasahala.workers.dev"; 
 // --- ▲▲▲ 設定項目 ▲▲▲ ---
 
 let menuData = [];
