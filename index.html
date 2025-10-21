@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>らくらく弁当 注文アプリ</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="loading" class="loading-overlay">
+    <div class="spinner"></div>
+    <p>読み込み中...</p>
+  </div>
+
+  <header class="app-header">
+    <h1>らくらく弁当 注文アプリ</h1>
+  </header>
+
+  <main id="app-main">
+    <div id="menu-container" class="menu-grid">
+      <!-- メニューはJavaScriptで動的に生成されます -->
+      </div>
+  </main>
+
+  <footer id="cart-footer" class="cart-footer">
+    <button id="view-cart-button" class="view-cart-button" disabled>
+      🛒 カートを見る (<span id="cart-item-count">0</span>)
+    </button>
+    <div class="total-price-display">
+      合計: ¥<span id="cart-total-price">0</span>
+    </div>
+  </footer>
+
+  <!-- 商品詳細モーダル -->
+  <div id="item-detail-modal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="item-detail-name">商品名</h2>
+        <button id="close-item-detail-modal" class="close-button">&times;</button>
+      </div>
+      <div class="item-detail-body">
+          <img id="item-detail-img" src="" alt="商品画像" class="item-detail-img">
+          <p id="item-detail-description">ここに商品の説明が入ります。</p>
+          <div id="item-detail-options" class="item-options">
+          </div>
+          <div class="quantity-selector">
+              <span>数量:</span>
+              <div class="quantity-controls">
+                  <button id="item-detail-decrease" class="quantity-btn">-</button>
+                  <span id="item-detail-quantity" class="quantity-display">1</span>
+                  <button id="item-detail-increase" class="quantity-btn">+</button>
+              </div>
+          </div>
+      </div>
+      <div class="modal-footer">
+          <button id="add-to-cart-button" class="submit-button">カートに追加する</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- カートモーダル -->
+  <div id="cart-modal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>注文内容の確認</h2>
+        <button id="close-cart-modal" class="close-button">&times;</button>
+      </div>
+      <div id="cart-items-container" class="cart-items-container">
+      </div>
+      
+      <!-- ★追加: 配達オプションコンテナ -->
+      <div class="order-options-container">
+        <h3>お受け取り方法</h3>
+        <div class="option-group">
+          <label class="option-label">
+            <span>店舗で受け取る</span>
+            <input type="radio" name="delivery-option" value="pickup" checked>
+          </label>
+          <label class="option-label">
+            <span>配達を希望する</span>
+            <input type="radio" name="delivery-option" value="delivery">
+          </label>
+        </div>
+
+        <div id="delivery-details" class="delivery-details hidden">
+          <h4>配達先情報</h4>
+          <div class="form-group">
+            <label for="delivery-address">配達先住所:</label>
+            <div class="address-input-group">
+              <input type="text" id="delivery-address" placeholder="住所を入力してください">
+              <button id="get-location-button" class="quantity-btn" title="現在地から入力">📍</button>
+            </div>
+            <small>「📍」ボタンで現在地から入力できます。</small>
+          </div>
+          <div class="form-group">
+            <label for="delivery-time">配達希望時間:</label>
+            <select id="delivery-time">
+              <option value="">時間を選択してください</option>
+              <option value="11:00-11:30">11:00 - 11:30</option>
+              <option value="11:30-12:00">11:30 - 12:00</option>
+              <option value="12:00-12:30">12:00 - 12:30</option>
+              <option value="12:30-13:00">12:30 - 13:00</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <div class="cart-summary-total">
+          <strong>合計金額:</strong> ¥<span id="cart-modal-total-price">0</span>
+        </div>
+        <button id="submit-order-button" class="submit-button">注文を確定する</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- カスタムアラートモーダル -->
+  <div id="custom-alert-modal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="custom-alert-title">タイトル</h2>
+      </div>
+      <div class="custom-alert-body">
+          <p id="custom-alert-message">メッセージ</p>
+      </div>
+      <div class="modal-footer">
+          <button id="custom-alert-ok-button" class="submit-button">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
+
